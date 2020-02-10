@@ -19,7 +19,7 @@ patch:
 	@bumpversion patch
 
 build:
-	go build -v -o fly .
+	 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix  cgo -v -o fly .
 
 install:
 	go build -v -o fly .
