@@ -4,31 +4,32 @@ settings:
     events: false     # print each event
     tools: false      # print each tool
 schema:
-- name: fly       # project name
-  path: .             # project path, '.' is for wdir path
-  commands:           # all go commands supported
-    generate:         # go generate
-      status: true
-    install:          # go install
-      status: true
-    vet:              # go vet
-      status: true
-    test:             # go test
-      status: true
-    fmt:              # go fmt
-      status: true
-  watcher:
-    paths:            # paths watched
-    - /
-    extensions:       # extensions watched
-    - go
-    - html
-    - css
-    - js
-    ignored_paths:    # paths ignored
-    - .git
-    - .fly
-    - .idea
-    - vendor
-    - fly/assets
-    - fly/bindata.go
+  - name: fly       # project name
+    path: .             # project path, '.' is for wdir path
+    commands:           # all go commands supported
+      generate:         # go generate
+        status: false
+      install:          # go install
+        status: false
+      vet:              # go vet
+        status: false
+      test:             # go test
+        status: false
+      fmt:              # go fmt
+        status: false
+      build:              # go fmt
+        status: true
+    watcher:
+      paths:            # paths watched
+        - /
+      extensions:       # extensions watched
+        - go
+        - html
+        - css
+        - js
+      ignored_paths:    # paths ignored
+        - .git
+        - .fly
+        - .idea
+        - vendor
+        - fly/assets
