@@ -11,9 +11,9 @@ import (
 
 var mockResponse interface{}
 
-type mockRealize core.Fly
+type mockFly core.Fly
 
-func (m *mockRealize) add() error {
+func (m *mockFly) add() error {
 	if mockResponse != nil {
 		return mockResponse.(error)
 	}
@@ -21,28 +21,28 @@ func (m *mockRealize) add() error {
 	return nil
 }
 
-func (m *mockRealize) setup() error {
+func (m *mockFly) setup() error {
 	if mockResponse != nil {
 		return mockResponse.(error)
 	}
 	return nil
 }
 
-func (m *mockRealize) start() error {
+func (m *mockFly) start() error {
 	if mockResponse != nil {
 		return mockResponse.(error)
 	}
 	return nil
 }
 
-func (m *mockRealize) clean() error {
+func (m *mockFly) clean() error {
 	if mockResponse != nil {
 		return mockResponse.(error)
 	}
 	return nil
 }
 
-func (m *mockRealize) remove() error {
+func (m *mockFly) remove() error {
 	if mockResponse != nil {
 		return mockResponse.(error)
 	}
@@ -50,8 +50,8 @@ func (m *mockRealize) remove() error {
 	return nil
 }
 
-func TestRealize_add(t *testing.T) {
-	m := mockRealize{}
+func TestFly_add(t *testing.T) {
+	m := mockFly{}
 	mockResponse = nil
 	if err := m.add(); err != nil {
 		t.Error("Unexpected error")
@@ -60,7 +60,7 @@ func TestRealize_add(t *testing.T) {
 		t.Error("Unexpected error")
 	}
 
-	m = mockRealize{}
+	m = mockFly{}
 	m.Projects = []core.Project{{Name: "Default"}}
 	mockResponse = nil
 	if err := m.add(); err != nil {
@@ -70,7 +70,7 @@ func TestRealize_add(t *testing.T) {
 		t.Error("Unexpected error")
 	}
 
-	m = mockRealize{}
+	m = mockFly{}
 	mockResponse = errors.New("error")
 	if err := m.clean(); err == nil {
 		t.Error("Expected error")
@@ -80,24 +80,24 @@ func TestRealize_add(t *testing.T) {
 	}
 }
 
-func TestRealize_start(t *testing.T) {
-	m := mockRealize{}
+func TestFly_start(t *testing.T) {
+	m := mockFly{}
 	mockResponse = nil
 	if err := m.add(); err != nil {
 		t.Error("Unexpected error")
 	}
 }
 
-func TestRealize_setup(t *testing.T) {
-	m := mockRealize{}
+func TestFly_setup(t *testing.T) {
+	m := mockFly{}
 	mockResponse = nil
 	if err := m.setup(); err != nil {
 		t.Error("Unexpected error")
 	}
 }
 
-func TestRealize_clean(t *testing.T) {
-	m := mockRealize{}
+func TestFly_clean(t *testing.T) {
+	m := mockFly{}
 	mockResponse = nil
 	if err := m.clean(); err != nil {
 		t.Error("Unexpected error")
@@ -108,14 +108,14 @@ func TestRealize_clean(t *testing.T) {
 	}
 }
 
-func TestRealize_remove(t *testing.T) {
-	m := mockRealize{}
+func TestFly_remove(t *testing.T) {
+	m := mockFly{}
 	mockResponse = nil
 	if err := m.remove(); err != nil {
 		t.Error("Unexpected error")
 	}
 
-	m = mockRealize{}
+	m = mockFly{}
 	mockResponse = nil
 	m.Projects = []core.Project{{Name: "Default"}, {Name: "Default"}}
 	if err := m.remove(); err != nil {
@@ -131,7 +131,7 @@ func TestRealize_remove(t *testing.T) {
 	}
 }
 
-func TestRealize_version(t *testing.T) {
+func TestFly_version(t *testing.T) {
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
 	version()

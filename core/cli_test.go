@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func TestRealize_Stop(t *testing.T) {
+func TestFly_Stop(t *testing.T) {
 	r := Fly{}
 	r.Projects = append(r.Schema.Projects, Project{exit: make(chan os.Signal, 1)})
 	r.Stop()
@@ -19,7 +19,7 @@ func TestRealize_Stop(t *testing.T) {
 	}
 }
 
-func TestRealize_Start(t *testing.T) {
+func TestFly_Start(t *testing.T) {
 	r := Fly{}
 	err := r.Start()
 	if err == nil {
@@ -40,7 +40,7 @@ func TestRealize_Start(t *testing.T) {
 	}
 }
 
-func TestRealize_Prefix(t *testing.T) {
+func TestFly_Prefix(t *testing.T) {
 	r := Fly{}
 	input := "test"
 	result := r.Prefix(input)
